@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+ empezó" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Rayden's Personal Bio Profile" />
     <meta name="keywords" content="rayden, profile, bio, youtube, discord, tiktok" />
@@ -26,43 +26,33 @@
     </style>
   </head>
   <body>
-    <!-- Main content from HomePage.tsx -->
     <div class="min-h-screen bg-gray-900 text-gray-100 flex flex-col items-center justify-center p-4">
-      <!-- Container for the profile card -->
       <div class="bg-gray-800 rounded-3xl shadow-2xl p-8 md:p-10 max-w-md w-full flex flex-col items-center text-center space-y-6 transform transition-all duration-300 hover:scale-105">
-        <!-- Profile Picture -->
         <div class="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-purple-500 shadow-lg">
-          <!-- User-provided image -->
           <img
             src="https://cdn.discordapp.com/avatars/1162483335638028410/20d85f69fd82807b22d10d8a61b8b596.png?size=1024"
             alt="Profile"
             class="w-full h-full object-cover"
             onerror="this.onerror=null; this.src='https://placehold.co/160x160/6B46C1/FFFFFF?text=Error';"
           />
-          <!-- Optional: Add a subtle overlay or border effect -->
           <div class="absolute inset-0 rounded-full ring-2 ring-purple-300 ring-opacity-50 animate-pulse"></div>
         </div>
 
-        <!-- Name -->
         <h1 class="text-4xl md:text-5xl font-extrabold text-white leading-tight">
           𖣂rayden𖣂
         </h1>
 
-        <!-- Bio/Tagline -->
         <p class="text-lg md:text-xl text-gray-300 max-w-prose">
           TUFF PPL not in order: orixo, banna, table, rocky, asteroid, wocks, freaky doodoobug, barkin, ian, bigboi, viper.
         </p>
 
-        <!-- Social Links Section -->
         <div class="flex flex-wrap justify-center gap-4 mt-4">
-          <!-- Discord Link -->
           <a
             href="https://discord.gg/x6nveyAeqH"
             target="_blank"
             rel="noopener noreferrer"
             class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center space-x-2"
           >
-            <!-- Using a proper Lucide icon from the available list -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -80,14 +70,12 @@
             <span>Zen Runners V9</span>
           </a>
 
-          <!-- YouTube Link -->
           <a
             href="https://www.youtube.com/@shmsrayden"
             target="_blank"
             rel="noopener noreferrer"
             class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center space-x-2"
           >
-            <!-- Using Youtube icon from Lucide -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -106,14 +94,12 @@
             <span>YouTube</span>
           </a>
 
-          <!-- TikTok Link -->
           <a
             href="https://www.tiktok.com/@raydengtag"
             target="_blank"
             rel="noopener noreferrer"
             class="bg-black hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center space-x-2"
           >
-            <!-- Using video icon as a substitute since TikTok isn't in Lucide -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -131,9 +117,32 @@
             </svg>
             <span>TikTok</span>
           </a>
+
+          <a
+            href="https://discord.gg/n486YCDqaC"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center space-x-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-code"
+            >
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            <span>RAYDEN PLACE | .py</span>
+          </a>
         </div>
 
-        <!-- Skills Section -->
         <div class="w-full mt-6 pt-6 border-t border-gray-700">
           <h2 class="text-2xl font-bold text-white mb-4">Skills</h2>
           <div class="flex flex-wrap justify-center gap-2">
@@ -142,12 +151,10 @@
         </div>
       </div>
 
-      <!-- Footer / Credit -->
       <footer class="mt-8 text-gray-400 text-sm">
         built by 𖣂rayden𖣂, ©RAYDEN
       </footer>
     </div>
-    <!-- IMPORTANT: Never remove the following script reference, otherwise advanced features like element editing will not work -->
     <script src="https://static.devv.ai/devv-app.js" type="module"></script>
   </body>
 </html>
