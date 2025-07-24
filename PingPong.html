@@ -1,3 +1,11 @@
+Hello Cairo,
+
+Got it! You want the "Select page" button to navigate the current tab to the selected page, and I'll assume the pages are in the same directory as PingPong.html for now.
+
+Here's the updated PingPong.html code with the "Select page" button and its functionality:
+
+HTML
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,6 +94,26 @@
         #settingsMenu {
             display: none;
         }
+
+        /* New styles for the select page dropdown */
+        #selectPageContainer {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 20; /* Ensure it's above other elements */
+            display: none; /* Hidden initially, shown with game canvas */
+        }
+
+        #selectPageContainer select, #selectPageContainer button {
+            background-color: #fff;
+            color: #000;
+            border: none;
+            padding: 5px 10px;
+            margin-right: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -123,6 +151,18 @@
     <button id="resetButton" onclick="resetScore()">Reset Score</button>
     <button id="resetBallButton" onclick="resetBall()">Reset Ball</button>
 
+    <div id="selectPageContainer">
+        <select id="pageSelector">
+            <option value="index.html">Home</option>
+            <option value="GamesImStaffIn.html">Games Im Staff In</option>
+            <option value="AboutMe.html">About Me</option>
+            <option value="tutorials.html">Tutorials</option>
+            <option value="quotes.html">Quotes</option>
+            <option value="PingPong.html">PingPong (current)</option>
+        </select>
+        <button onclick="goToSelectedPage()">Go to Page</button>
+    </div>
+
     <div id="popup"></div>
 
     <script>
@@ -136,6 +176,8 @@
         const resetBallButton = document.getElementById('resetBallButton');
         const popup = document.getElementById('popup');
         const ballSpeedIncreaseSelect = document.getElementById('ballSpeedIncrease');
+        const selectPageContainer = document.getElementById('selectPageContainer'); // New
+        const pageSelector = document.getElementById('pageSelector'); // New
 
         // Paddle properties
         const paddleHeight = 100;
@@ -326,6 +368,7 @@
             backButton.style.display = 'block';
             resetButton.style.display = 'block';
             resetBallButton.style.display = 'block';
+            selectPageContainer.style.display = 'block'; // Show select page container
             menu.style.display = 'none';
             settingsMenu.style.display = 'none';
             ballSpeedX = initialBallSpeed; // Reset ball speed
@@ -355,6 +398,7 @@
             backButton.style.display = 'none';
             resetButton.style.display = 'none';
             resetBallButton.style.display = 'none';
+            selectPageContainer.style.display = 'none'; // Hide select page container
             menu.style.display = 'block';
             settingsMenu.style.display = 'none';
             popup.style.display = 'none'; // Hide popup when going back to menu
@@ -379,6 +423,12 @@
             setTimeout(() => {
                 popup.style.display = 'none';
             }, 2000);
+        }
+
+        // New function to navigate to the selected page
+        function goToSelectedPage() {
+            const selectedPage = pageSelector.value;
+            window.location.href = selectedPage;
         }
     </script>
 </body>
