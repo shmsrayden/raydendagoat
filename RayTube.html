@@ -179,11 +179,23 @@
         let isAuthReady = false;
         let isLoginMode = true; // true for login, false for signup
 
-        // Global variables provided by the Canvas environment
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-        // Correctly reference __initial_auth_token on the right-hand side
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        // Firebase configuration (use your actual values here)
+        const firebaseConfig = {
+            apiKey: "AIzaSyABgTJWKNNOwgUmhQ4fWHo9vNikitJ79mg",
+            authDomain: "raytube-f6f90.firebaseapp.com",
+            projectId: "raytube-f6f90",
+            storageBucket: "raytube-f6f90.firebasestorage.app",
+            messagingSenderId: "645586855837",
+            appId: "1:645586855837:web:7b4254604fdf99713b7174",
+            measurementId: "G-XSK1VZF3QK" // measurementId is optional for basic auth
+        };
+
+        // You can now derive appId from firebaseConfig directly
+        const appId = firebaseConfig.appId;
+
+        // If you are not using custom tokens, this can be null or removed
+        const initialAuthToken = null; // Set to null if you don't use custom tokens
+
 
         // --- DOM Element References ---
         const userIdDisplay = document.getElementById('userIdDisplay');
