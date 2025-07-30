@@ -194,12 +194,12 @@
         // Global variables provided by the Canvas environment
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
         const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-        // Fix: Correctly reference __initial_auth_token on the right-hand side
+        // Correctly reference __initial_auth_token on the right-hand side
         const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
         // --- DOM Element References ---
         const userIdDisplay = document.getElementById('userIdDisplay');
-        const pageSelect = document.getElementById('pageSelect'); // New: Reference to the select menu
+        const pageSelect = document.getElementById('pageSelect'); // Reference to the select menu
         const authButtons = document.getElementById('authButtons');
         const userActionButtons = document.getElementById('userActionButtons');
         const loginBtn = document.getElementById('loginBtn');
@@ -554,7 +554,7 @@
         // Logout button
         logoutBtn.addEventListener('click', handleLogout);
 
-        // New: Event listener for the page select menu
+        // Event listener for the page select menu
         pageSelect.addEventListener('change', (event) => {
             const selectedPage = event.target.value;
             if (selectedPage) { // Only navigate if a valid option is selected
