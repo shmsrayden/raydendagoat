@@ -179,7 +179,7 @@
         let isAuthReady = false;
         let isLoginMode = true; // true for login, false for signup
 
-        // Firebase configuration (use your actual values here)
+        // Firebase configuration (using your provided details)
         const firebaseConfig = {
             apiKey: "AIzaSyABgTJWKNNOwgUmhQ4fWHo9vNikitJ79mg",
             authDomain: "raytube-f6f90.firebaseapp.com",
@@ -187,15 +187,14 @@
             storageBucket: "raytube-f6f90.firebasestorage.app",
             messagingSenderId: "645586855837",
             appId: "1:645586855837:web:7b4254604fdf99713b7174",
-            measurementId: "G-XSK1VZF3QK" // measurementId is optional for basic auth
+            measurementId: "G-XSK1VZF3QK" // measurementId is optional for basic auth, but included for completeness
         };
 
-        // You can now derive appId from firebaseConfig directly
+        // Deriving appId directly from firebaseConfig
         const appId = firebaseConfig.appId;
 
-        // If you are not using custom tokens, this can be null or removed
-        const initialAuthToken = null; // Set to null if you don't use custom tokens
-
+        // Set to null if you are not using custom tokens, otherwise provide your token
+        const initialAuthToken = null;
 
         // --- DOM Element References ---
         const userIdDisplay = document.getElementById('userIdDisplay');
@@ -335,6 +334,7 @@
                                 console.log("Signed in anonymously due to custom token error.");
                             }
                         } else {
+                            // Only sign in anonymously if there's no initialAuthToken
                             await signInAnonymously(auth);
                             currentUserId = auth.currentUser?.uid || crypto.randomUUID();
                             console.log("Signed in anonymously.");
