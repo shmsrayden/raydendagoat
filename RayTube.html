@@ -36,7 +36,7 @@
                 <option value="quotes.html">Quotes</option>
                 <option value="PingPong.html">PingPong</option>
                 <option value="thingoftheday.html">thing of the day</option>
-                <option value="RayTube.html">RayTube (current) </option>
+                <option value="RayTube.html">RayTube (current)</option>
             </select>
 
             <!-- Authentication buttons (Login/Sign Up) -->
@@ -237,19 +237,21 @@
         // --- Utility Functions for UI ---
 
         /**
-         * Shows a modal by removing the 'hidden' class.
+         * Shows a modal by removing the 'hidden' class and explicitly setting display to flex.
          * @param {HTMLElement} modalElement - The modal DOM element.
          */
         function showModal(modalElement) {
             modalElement.classList.remove('hidden');
+            modalElement.style.display = 'flex'; // Ensure it's displayed as flex
         }
 
         /**
-         * Hides a modal by adding the 'hidden' class.
+         * Hides a modal by adding the 'hidden' class and explicitly setting display to none.
          * @param {HTMLElement} modalElement - The modal DOM element.
          */
         function hideModal(modalElement) {
             modalElement.classList.add('hidden');
+            modalElement.style.display = 'none'; // Ensure it's hidden
         }
 
         /**
