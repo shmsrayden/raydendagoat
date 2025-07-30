@@ -36,24 +36,24 @@
                 <option value="quotes.html">Quotes</option>
                 <option value="PingPong.html">PingPong</option>
                 <option value="thingoftheday.html">thing of the day</option>
-                <option value="RayTube.html">RayTube (current)</option>
+                <option value="RayTube.html">RayTube (current) </option>
             </select>
 
             <!-- Authentication buttons (Login/Sign Up) -->
             <div id="authButtons" class="flex space-x-4">
-                <button id="loginBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+                <button id="loginBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out" disabled>
                     Login
                 </button>
-                <button id="signupBtn" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+                <button id="signupBtn" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out" disabled>
                     Sign Up
                 </button>
             </div>
             <!-- User action buttons (Upload/Logout) -->
             <div id="userActionButtons" class="flex space-x-4 hidden">
-                <button id="uploadVideoBtn" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+                <button id="uploadVideoBtn" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out" disabled>
                     Upload Video
                 </button>
-                <button id="logoutBtn" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+                <button id="logoutBtn" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out" disabled>
                     Logout
                 </button>
             </div>
@@ -272,21 +272,37 @@
         }
 
         /**
-         * Updates the visibility of authentication and user action buttons based on login status.
+         * Updates the visibility and enabled state of authentication and user action buttons based on login status and auth readiness.
          */
         function updateHeaderButtons() {
-            if (currentUserId && !auth.currentUser?.isAnonymous) {
+            // First, control visibility based on login state
+            if (currentUserId && auth.currentUser && !auth.currentUser.isAnonymous) {
                 // User is logged in (not anonymous)
                 authButtons.classList.add('hidden');
                 userActionButtons.classList.remove('hidden');
-                userIdDisplay.textContent = `User ID: ${currentUserId}`;
-                userIdDisplay.classList.remove('hidden');
             } else {
                 // User is anonymous or logged out
                 authButtons.classList.remove('hidden');
                 userActionButtons.classList.add('hidden');
-                userIdDisplay.textContent = `User ID: ${currentUserId}`;
-                userIdDisplay.classList.remove('hidden'); // Always show user ID for debugging/identification
+            }
+
+            // Always show user ID for debugging/identification
+            userIdDisplay.textContent = `User ID: ${currentUserId}`;
+            userIdDisplay.classList.remove('hidden');
+
+            // Then, control button enabled state based on isAuthReady
+            if (isAuthReady) {
+                loginBtn.disabled = false;
+                signupBtn.disabled = false;
+                uploadVideoBtn.disabled = false;
+                logoutBtn.disabled = false;
+            } else {
+                // This state should ideally not be reached if buttons are initially disabled,
+                // but good for robustness.
+                loginBtn.disabled = true;
+                signupBtn.disabled = true;
+                uploadVideoBtn.disabled = true;
+                logoutBtn.disabled = true;
             }
         }
 
@@ -457,8 +473,9 @@
             e.preventDefault();
             hideMessage(authErrorMessage);
 
-            if (!auth) {
-                displayMessage(authErrorMessage, "Firebase Auth not initialized.");
+            // Ensure auth is initialized before proceeding
+            if (!auth || !isAuthReady) {
+                displayMessage(authErrorMessage, "Firebase Auth not initialized. Please wait a moment.");
                 return;
             }
 
