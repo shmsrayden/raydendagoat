@@ -187,7 +187,7 @@
             storageBucket: "raytube-f6f90.firebasestorage.app",
             messagingSenderId: "645586855837",
             appId: "1:645586855837:web:7b4254604fdf99713b7174",
-            measurementId: "G-XSK1VZF3QK" // measurementId is optional for basic auth, but included for completeness
+            measurementId: "G-XSK1VZF3QK"
         };
 
         // Deriving appId directly from firebaseConfig
@@ -334,7 +334,6 @@
                                 console.log("Signed in anonymously due to custom token error.");
                             }
                         } else {
-                            // Only sign in anonymously if there's no initialAuthToken
                             await signInAnonymously(auth);
                             currentUserId = auth.currentUser?.uid || crypto.randomUUID();
                             console.log("Signed in anonymously.");
