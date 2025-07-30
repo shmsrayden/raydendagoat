@@ -282,29 +282,26 @@
                 // User is logged in (not anonymous)
                 authButtons.classList.add('hidden');
                 userActionButtons.classList.remove('hidden');
+                userIdDisplay.textContent = `User ID: ${currentUserId}`;
+                userIdDisplay.classList.remove('hidden');
+
+                // Explicitly enable user action buttons if auth is ready
+                if (isAuthReady) {
+                    uploadVideoBtn.disabled = false;
+                    logoutBtn.disabled = false;
+                }
             } else {
                 // User is anonymous or logged out
                 authButtons.classList.remove('hidden');
                 userActionButtons.classList.add('hidden');
-            }
+                userIdDisplay.textContent = `User ID: ${currentUserId}`;
+                userIdDisplay.classList.remove('hidden'); // Always show user ID for debugging/identification
 
-            // Always show user ID for debugging/identification
-            userIdDisplay.textContent = `User ID: ${currentUserId}`;
-            userIdDisplay.classList.remove('hidden');
-
-            // Then, control button enabled state based on isAuthReady
-            if (isAuthReady) {
-                loginBtn.disabled = false;
-                signupBtn.disabled = false;
-                uploadVideoBtn.disabled = false;
-                logoutBtn.disabled = false;
-            } else {
-                // This state should ideally not be reached if buttons are initially disabled,
-                // but good for robustness.
-                loginBtn.disabled = true;
-                signupBtn.disabled = true;
-                uploadVideoBtn.disabled = true;
-                logoutBtn.disabled = true;
+                // Explicitly enable auth buttons if auth is ready
+                if (isAuthReady) {
+                    loginBtn.disabled = false;
+                    signupBtn.disabled = false;
+                }
             }
         }
 
