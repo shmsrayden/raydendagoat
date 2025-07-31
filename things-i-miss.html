@@ -14,6 +14,8 @@
         display: flex; /* Make body a flex container */
         flex-direction: column; /* Stack children vertically */
         min-height: 100vh; /* Ensure body takes at least the full viewport height */
+        background-color: #111827; /* gray-900 - apply background to body */
+        color: #D1D5DB; /* gray-100 - apply text color to body */
       }
       .animate-pulse {
         animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
@@ -59,7 +61,7 @@
     </style>
   </head>
   <body>
-    <div class="content-wrapper min-h-screen bg-gray-900 text-gray-100">
+    <div class="content-wrapper">
       <div class="page-selector-container">
         <label for="page-selector" class="sr-only">Navigate To:</label>
         <select
