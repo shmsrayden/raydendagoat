@@ -11,6 +11,9 @@
     <style>
       body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        display: flex; /* Make body a flex container */
+        flex-direction: column; /* Stack children vertically */
+        min-height: 100vh; /* Ensure body takes at least the full viewport height */
       }
       .animate-pulse {
         animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
@@ -45,10 +48,18 @@
         outline: none;
         box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.5); /* purple-500 with opacity */
       }
+      .content-wrapper { /* New wrapper for main content */
+        flex-grow: 1; /* Allow this div to grow and push footer down */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 4px; /* Apply padding here instead of on body's main div */
+      }
     </style>
   </head>
   <body>
-    <div class="min-h-screen bg-gray-900 text-gray-100 flex flex-col items-center justify-center p-4">
+    <div class="content-wrapper min-h-screen bg-gray-900 text-gray-100">
       <div class="page-selector-container">
         <label for="page-selector" class="sr-only">Navigate To:</label>
         <select
@@ -84,10 +95,9 @@
         </div>
       </div>
 
-      <footer class="mt-8 text-gray-400 text-sm">
+      <footer class="mt-auto text-gray-400 text-sm p-4 text-center w-full">
         built by 𖣂rayden𖣂, ©RAYDEN on my bed 😭
       </footer>
-    </div>
     <script src="https://static.devv.ai/devv-app.js" type="module"></script>
   </body>
 </html>
