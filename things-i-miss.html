@@ -11,11 +11,11 @@
     <style>
       body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        display: flex; /* Make body a flex container */
-        flex-direction: column; /* Stack children vertically */
-        min-height: 100vh; /* Ensure body takes at least the full viewport height */
-        background-color: #111827; /* gray-900 - apply background to body */
-        color: #D1D5DB; /* gray-100 - apply text color to body */
+        display: flex; 
+        flex-direction: column; 
+        min-height: 100vh; 
+        background-color: #111827; 
+        color: #D1D5DB; 
       }
       .animate-pulse {
         animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
@@ -28,35 +28,35 @@
           opacity: .5;
         }
       }
-      /* Custom styles for the page selector */
+      
       .page-selector-container {
         position: absolute;
         top: 1rem;
         right: 1rem;
-        z-index: 10; /* Ensure it stays on top of other content */
+        z-index: 10; 
       }
       .page-selector {
-        background-color: #374151; /* gray-700 */
-        color: #D1D5DB; /* gray-300 */
-        border: 1px solid #4B5563; /* gray-600 */
+        background-color: #374151; 
+        color: #D1D5DB; 
+        border: 1px solid #4B5563; 
         padding: 0.5rem 1rem;
         border-radius: 0.5rem;
-        appearance: none; /* Remove default select arrow */
+        appearance: none; 
         -webkit-appearance: none;
         -moz-appearance: none;
         cursor: pointer;
       }
       .page-selector:focus {
         outline: none;
-        box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.5); /* purple-500 with opacity */
+        box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.5); 
       }
-      .content-wrapper { /* New wrapper for main content */
-        flex-grow: 1; /* Allow this div to grow and push footer down */
+      .content-wrapper { 
+        flex-grow: 1; 
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 4px; /* Apply padding here instead of on body's main div */
+        padding: 4px; 
       }
     </style>
   </head>
